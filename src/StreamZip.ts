@@ -39,6 +39,14 @@ export interface IOP {
 	move?: boolean;
 }
 
+// tslint:disable-next-line:interface-name
+export declare interface StreamZip {
+	on(event: "error", listener: (err: Error) => void): this;
+	on(event: "entry", listener: (entry: ZipEntry) => void): this;
+	on(event: "ready", listener: () => void): this;
+	on(event: "extract", listener: (entry: ZipEntry, outPath: string) => void): this;
+}
+
 export class StreamZip extends events.EventEmitter {
 
 	// public get ready() {
@@ -236,7 +244,7 @@ export class StreamZip extends events.EventEmitter {
 
 	public readEntriesCallback(err: Error, bytesRead: number) {
 		if (err || !bytesRead) {
-			return this.emit("error", err || "Entries read error");
+			return this.emit("error", err || new Error("Entries read error"));
 		}
 		const buffer = this.op.win.buffer;
 		let bufferPos = this.op.pos - this.op.win.position;
@@ -428,7 +436,7 @@ export class StreamZip extends events.EventEmitter {
 					return;
 				}
 				fsStm = fs.createWriteStream(outPath, { fd: fdFile });
-				fsStm.on("finish",  () => {
+				fsStm.on("finish", () => {
 					if (StreamZip.debug) {
 						console.log("close", outPath);
 					}
@@ -545,7 +553,7 @@ export class StreamZip extends events.EventEmitter {
 		}
 	}
 
-	public close(callback: (err?: Error) => void) {
+	public close(callback?: (err?: Error) => void) {
 		if (this.fd) {
 			fs.close(this.fd, (err) => {
 				this.fd = null;

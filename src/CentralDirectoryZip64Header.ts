@@ -1,11 +1,34 @@
 import { Util } from "./BufferUtil";
 import { consts } from "./consts";
-// region CentralDirectoryZip64Header
 
 export class CentralDirectoryZip64Header {
+	/**
+	 * number of entries on this volume
+	 *
+	 * @type {number}
+	 * @memberof CentralDirectoryZip64Header
+	 */
 	public volumeEntries: number;
+	/**
+	 * total number of entries
+	 *
+	 * @type {number}
+	 * @memberof CentralDirectoryZip64Header
+	 */
 	public totalEntries: number;
+	/**
+	 * central directory size in bytes
+	 *
+	 * @type {number}
+	 * @memberof CentralDirectoryZip64Header
+	 */
 	public size: number;
+	/**
+	 * offset of first CEN header
+	 *
+	 * @type {number}
+	 * @memberof CentralDirectoryZip64Header
+	 */
 	public offset: number;
 
 	public read(data: Buffer) {
@@ -23,4 +46,3 @@ export class CentralDirectoryZip64Header {
 	}
 
 }
-// endregion

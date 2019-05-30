@@ -5,7 +5,6 @@ interface IState {
 	size: number;
 }
 
-// region CrcVerify
 export class CrcVerify {
 	public static crcTable: number[];
 
@@ -63,5 +62,3 @@ export class CrcVerify {
 		}
 	}
 }
-
-// endregion

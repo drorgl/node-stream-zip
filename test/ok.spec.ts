@@ -136,22 +136,20 @@ describe("valid zip files", () => {
 		});
 	}
 
-	describe("openEntry", () => {
-		it("isok", (done) => {
-			const zip = new StreamZip({ file: "test/ok/normal.zip" });
-			zip.on("ready", () => {
-				const entries = zip.entries();
-				const entry = entries["doc/changelog-foot.html"];
-				expect(entry).to.be.an.instanceof(ZipEntry);
-				const entryBeforeOpen = Object.assign({}, entry);
-				zip.openEntry(entry, (err, entryAfterOpen) => {
-					expect(err).to.eq(undefined);
-					// figure out why not working...
-					// expect(entryBeforeOpen).to.deep.eq(entryAfterOpen);
+	it("openEntry", (done) => {
+		const zip = new StreamZip({ file: "test/ok/normal.zip" });
+		zip.on("ready", () => {
+			const entries = zip.entries();
+			const entry = entries["doc/changelog-foot.html"];
+			expect(entry).to.be.an.instanceof(ZipEntry);
+			const entryBeforeOpen = Object.assign({}, entry);
+			zip.openEntry(entry, (err, entryAfterOpen) => {
+				expect(err).to.eq(undefined);
+				// figure out why not working...
+				// expect(entryBeforeOpen).to.deep.eq(entryAfterOpen);
 
-					done();
-				}, false);
-			});
+				done();
+			}, false);
 		});
 	});
 

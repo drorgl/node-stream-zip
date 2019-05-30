@@ -3,18 +3,6 @@
  * Portions copyright https://github.com/cthackers/adm-zip | https://raw.githubusercontent.com/cthackers/adm-zip/master/MIT-LICENSE.txt
  */
 
-// region Deps
-import events from "events";
-import fs from "fs";
-import path from "path";
-import stream from "stream";
-import util from "util";
-import zlib from "zlib";
-
-// endregion
-
-// region Constants
-
 export const consts = {
 	/* The local file header */
 	LOCHDR: 30, // LOC header size
@@ -139,5 +127,3 @@ export const consts = {
 	EF_ZIP64_OR_32: 0xffffffff,
 	EF_ZIP64_OR_16: 0xffff
 };
-
-// endregion

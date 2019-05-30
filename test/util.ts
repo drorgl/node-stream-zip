@@ -64,17 +64,17 @@ export async function rmdirRecursive(dir: string) {
 		if (filename === "." || filename === "..") {
 			// nop
 		} else if (stats.isDirectory()) {
-			await rmdir(filename);
+			await rmdirRecursive(filename);
 		} else {
-			console.log("deleting file", filename);
+			// console.log("deleting file", filename);
 			try { await unlink(filename); } catch (e) {
 				// nop
-				console.log("unable to delete file", filename, e);
+				// console.log("unable to delete file", filename, e);
 			}
 		}
 	}
 	try { await rmdir(dir); } catch (e) {
 		// nop
-		console.log("unable to delete folder", dir, e);
+		// console.log("unable to delete folder", dir, e);
 	}
 }

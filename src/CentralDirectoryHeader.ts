@@ -1,11 +1,44 @@
 import { consts } from "./consts";
-// region CentralDirectoryHeader
 
 export class CentralDirectoryHeader {
+	/**
+	 * number of entries on this volume
+	 *
+	 * @type {number}
+	 * @memberof CentralDirectoryHeader
+	 */
 	public volumeEntries: number;
+
+	/**
+	 * total number of entries
+	 *
+	 * @type {number}
+	 * @memberof CentralDirectoryHeader
+	 */
 	public totalEntries: number;
+
+	/**
+	 * central directory size in bytes
+	 *
+	 * @type {number}
+	 * @memberof CentralDirectoryHeader
+	 */
 	public size: number;
+
+	/**
+	 * offset of first CEN header
+	 *
+	 * @type {number}
+	 * @memberof CentralDirectoryHeader
+	 */
 	public offset: number;
+
+	/**
+	 * zip file comment length
+	 *
+	 * @type {number}
+	 * @memberof CentralDirectoryHeader
+	 */
 	public commentLength: number;
 	public headerOffset: number;
 
@@ -26,4 +59,3 @@ export class CentralDirectoryHeader {
 	}
 
 }
-// endregion

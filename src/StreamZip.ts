@@ -15,8 +15,6 @@ import { FileWindowBuffer } from "./FileWindowBuffer";
 import { FsRead } from "./FsRead";
 import { ZipEntry } from "./ZipEntry";
 
-// region StreamZip
-
 export interface IStreamZipConfig {
 	storeEntries?: boolean;
 	file: string;
@@ -63,13 +61,7 @@ export class StreamZip extends events.EventEmitter {
 	// }
 	constructor(private config: IStreamZipConfig) {
 		super();
-		// let
-		// 	fd,
-		// 	fileSize,
-		// 	chunkSize,
 		this.ready = false;
-		// 	op,
-		// 	centralDirectory,
 
 		this._entries = config.storeEntries !== false ? {} : null,
 			this.fileName = config.file;

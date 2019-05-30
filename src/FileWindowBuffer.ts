@@ -1,6 +1,5 @@
 import { consts } from "./consts";
 import { FsRead } from "./FsRead";
-// region FileWindowBuffer
 
 export class FileWindowBuffer {
 	public position: number;
@@ -61,5 +60,3 @@ export class FileWindowBuffer {
 		this.fsOp.read();
 	}
 }
-
-// endregion

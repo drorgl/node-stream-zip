@@ -10,17 +10,17 @@ function toBits(dec: number, size: number) {
 	return b.split("");
 }
 
-function parseZipTime(timebytes: number, datebytes: number) {
-	const timebits = toBits(timebytes, 16);
-	const datebits = toBits(datebytes, 16);
+function parseZipTime(timeBytes: number, dateBytes: number) {
+	const timeBits = toBits(timeBytes, 16);
+	const dateBits = toBits(dateBytes, 16);
 
 	const mt = {
-		h: parseInt(timebits.slice(0, 5).join(""), 2),
-		m: parseInt(timebits.slice(5, 11).join(""), 2),
-		s: parseInt(timebits.slice(11, 16).join(""), 2) * 2,
-		Y: parseInt(datebits.slice(0, 7).join(""), 2) + 1980,
-		M: parseInt(datebits.slice(7, 11).join(""), 2),
-		D: parseInt(datebits.slice(11, 16).join(""), 2),
+		h: parseInt(timeBits.slice(0, 5).join(""), 2),
+		m: parseInt(timeBits.slice(5, 11).join(""), 2),
+		s: parseInt(timeBits.slice(11, 16).join(""), 2) * 2,
+		Y: parseInt(dateBits.slice(0, 7).join(""), 2) + 1980,
+		M: parseInt(dateBits.slice(7, 11).join(""), 2),
+		D: parseInt(dateBits.slice(11, 16).join(""), 2),
 	};
 	const dt_str = [mt.Y, mt.M, mt.D].join("-") + " " + [mt.h, mt.m, mt.s].join(":") + " GMT+0";
 	return new Date(dt_str).getTime();
@@ -61,9 +61,9 @@ export class ZipEntry {
 		// compression method
 		this.method = data.readUInt16LE(offset + consts.CENHOW);
 		// modification time (2 bytes time, 2 bytes date)
-		const timebytes = data.readUInt16LE(offset + consts.CENTIM);
-		const datebytes = data.readUInt16LE(offset + consts.CENTIM + 2);
-		this.time = parseZipTime(timebytes, datebytes);
+		const timeBytes = data.readUInt16LE(offset + consts.CENTIM);
+		const dateBytes = data.readUInt16LE(offset + consts.CENTIM + 2);
+		this.time = parseZipTime(timeBytes, dateBytes);
 
 		// uncompressed file crc-32 value
 		this.crc = data.readUInt32LE(offset + consts.CENCRC);
@@ -99,9 +99,9 @@ export class ZipEntry {
 		// compression method
 		this.method = data.readUInt16LE(consts.LOCHOW);
 		// modification time (2 bytes time ; 2 bytes date)
-		const timebytes = data.readUInt16LE(consts.LOCTIM);
-		const datebytes = data.readUInt16LE(consts.LOCTIM + 2);
-		this.time = parseZipTime(timebytes, datebytes);
+		const timeBytes = data.readUInt16LE(consts.LOCTIM);
+		const dateBytes = data.readUInt16LE(consts.LOCTIM + 2);
+		this.time = parseZipTime(timeBytes, dateBytes);
 
 		// uncompressed file crc-32 value
 		this.crc = data.readUInt32LE(consts.LOCCRC) || this.crc;
@@ -170,7 +170,7 @@ export class ZipEntry {
 		}
 		if (length >= 4 && this.diskStart === consts.EF_ZIP64_OR_16) {
 			this.diskStart = data.readUInt32LE(offset);
-			// offset += 4; length -= 4;
+			offset += 4; length -= 4;
 		}
 	}
 
@@ -181,6 +181,4 @@ export class ZipEntry {
 	public get isFile() {
 		return !this.isDirectory;
 	}
-
-	// endregion
 }

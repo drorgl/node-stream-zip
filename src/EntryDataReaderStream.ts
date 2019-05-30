@@ -1,7 +1,6 @@
 import fs from "fs";
 import stream from "stream";
 import { consts } from "./consts";
-// region EntryDataReaderStream
 
 export class EntryDataReaderStream extends stream.Readable {
 	public fd: number;
@@ -10,7 +9,6 @@ export class EntryDataReaderStream extends stream.Readable {
 	public pos: number;
 	constructor(fd: number, offset: number, length: number) {
 		super();
-		// stream.Readable.prototype.constructor.call(this);
 		this.fd = fd;
 		this.offset = offset;
 		this.length = length;
@@ -21,8 +19,8 @@ export class EntryDataReaderStream extends stream.Readable {
 		const buffer = Buffer.alloc(Math.min(n, this.length - this.pos));
 		if (buffer.length) {
 			fs.read(this.fd, buffer, 0, buffer.length, this.offset + this.pos,
-				(err, bytesRead, bufferforCallback) => {
-					this.readCallback(err, bytesRead, bufferforCallback);
+				(err, bytesRead, bufferForCallback) => {
+					this.readCallback(err, bytesRead, bufferForCallback);
 				} );
 		} else {
 			this.push(null);
@@ -45,5 +43,3 @@ export class EntryDataReaderStream extends stream.Readable {
 	}
 
 }
-
-// endregion

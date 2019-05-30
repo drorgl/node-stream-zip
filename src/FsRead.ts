@@ -1,7 +1,6 @@
 import fs from "fs";
 import { consts } from "./consts";
 import { StreamZip } from "./StreamZip";
-// region FsRead
 
 export class FsRead {
 	public fd: number;
@@ -62,5 +61,3 @@ export class FsRead {
 	}
 
 }
-
-// endregion

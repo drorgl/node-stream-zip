@@ -1,7 +1,6 @@
 import stream from "stream";
 import { consts } from "./consts";
 import { CrcVerify } from "./CrcVerify";
-// region EntryVerifyStream
 
 export class EntryVerifyStream extends stream.Transform {
 	public verify: CrcVerify;
@@ -9,7 +8,6 @@ export class EntryVerifyStream extends stream.Transform {
 	constructor(baseStm: stream.Stream, crc: number, size: number) {
 
 		super();
-		// stream.Transform.prototype.constructor.call(this);
 		this.verify = new CrcVerify(crc, size);
 		baseStm.on("error", (e) => {
 			this.emit("error", e);
@@ -27,5 +25,3 @@ export class EntryVerifyStream extends stream.Transform {
 	}
 
 }
-
-// endregion

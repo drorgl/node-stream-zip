@@ -3,14 +3,8 @@ import fs from "fs";
 import "mocha";
 import { makeid, rmdirRecursive } from "./util";
 
-// import { O_TRUNC } from "constants";
-import path from "path";
-// import stream from "stream";
 import { StreamZip } from "../src/StreamZip";
-import { ZipEntry } from "../src/ZipEntry";
 
-// let testPathTmp;
-// let testNum = 0;
 const basePathTmp = "test/.tmp/";
 const contentPath = "test/content/";
 
@@ -26,7 +20,6 @@ describe("test/special", () => {
 			await rmdirRecursive(testPathTmp);
 		}
 		fs.mkdirSync(testPathTmp);
-		console.log("special", testPathTmp);
 	});
 
 	after(async () => {

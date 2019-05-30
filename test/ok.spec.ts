@@ -2,15 +2,10 @@ import { expect } from "chai";
 import fs from "fs";
 import "mocha";
 
-// import { O_TRUNC } from "constants";
-import path from "path";
-// import stream from "stream";
 import { StreamZip } from "../src/StreamZip";
 import { ZipEntry } from "../src/ZipEntry";
 import { makeid, rmdirRecursive } from "./util";
 
-// let testPathTmp;
-// let testNum = 0;
 const basePathTmp = "test/.tmp/";
 const contentPath = "test/content/";
 
@@ -26,7 +21,6 @@ describe("valid zip files", () => {
 			await rmdirRecursive(testPathTmp);
 		}
 		fs.mkdirSync(testPathTmp);
-		console.log("ok", testPathTmp);
 	});
 
 	after(async () => {

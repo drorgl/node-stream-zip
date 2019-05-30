@@ -5,3 +5,4 @@ build/
 resources/lib
 *.log
 /test/.tmp
+/dist

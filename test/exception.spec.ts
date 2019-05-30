@@ -3,15 +3,9 @@ import fs from "fs";
 import "mocha";
 import { makeid, rmdirRecursive } from "./util";
 
-// import { O_TRUNC } from "constants";
-import path from "path";
 import stream = require("stream");
-// import stream from "stream";
 import { StreamZip } from "../src/StreamZip";
-import { ZipEntry } from "../src/ZipEntry";
 
-// let testPathTmp;
-// let testNum = 0;
 const basePathTmp = "test/.tmp/";
 const contentPath = "test/content/";
 
@@ -27,7 +21,6 @@ describe("exception", () => {
 			await rmdirRecursive(testPathTmp);
 		}
 		fs.mkdirSync(testPathTmp);
-		console.log("exception", testPathTmp);
 	});
 
 	after(async () => {

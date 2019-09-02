@@ -1,0 +1,14 @@
+src
+.vscode
+tsconfig.json
+tslint.json
+.travis.yml
+test
+examples
+release-notes.md
+node-stream-zip-*
+drorgl-node-stream-zip-*
+docs
+coverage
+.nyc_output
+.nycrc

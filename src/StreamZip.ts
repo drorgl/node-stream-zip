@@ -1,7 +1,6 @@
 import events = require("events");
 import fs from "fs";
 import path from "path";
-import { Stream } from "stream";
 import stream from "stream";
 import zlib from "zlib";
 import { CentralDirectoryHeader } from "./CentralDirectoryHeader";

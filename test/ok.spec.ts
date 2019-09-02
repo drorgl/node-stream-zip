@@ -1,9 +1,7 @@
 import { expect } from "chai";
 import fs from "fs";
 import "mocha";
-
-import { StreamZip } from "../src/StreamZip";
-import { ZipEntry } from "../src/ZipEntry";
+import { StreamZip, ZipEntry } from "../src/index";
 import { makeid, rmdirRecursive } from "./util";
 
 const basePathTmp = "test/.tmp/";
@@ -137,10 +135,12 @@ describe("valid zip files", () => {
 			const entry = entries["doc/changelog-foot.html"];
 			expect(entry).to.be.an.instanceof(ZipEntry);
 			const entryBeforeOpen = Object.assign({}, entry);
+			delete entryBeforeOpen.extraLen;
 			zip.openEntry(entry, (err, entryAfterOpen) => {
 				expect(err).to.eq(undefined);
-				// figure out why not working...
-				// expect(entryBeforeOpen).to.deep.eq(entryAfterOpen);
+				// the extra length is part of an entry, it is different
+				delete entryAfterOpen.extraLen;
+				expect(entryBeforeOpen).to.deep.eq(entryAfterOpen);
 
 				done();
 			}, false);

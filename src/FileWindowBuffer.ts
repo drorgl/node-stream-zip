@@ -1,4 +1,3 @@
-import { consts } from "./consts";
 import { FsRead } from "./FsRead";
 
 export class FileWindowBuffer {
@@ -29,7 +28,7 @@ export class FileWindowBuffer {
 		this.fsOp.read();
 	}
 
-	public expandLeft(length: number, callback: (err: Error, bytesRead: number) => void ) {
+	public expandLeft(length: number, callback: (err: Error, bytesRead: number) => void) {
 		this.checkOp();
 		this.buffer = Buffer.concat([Buffer.alloc(length), this.buffer]);
 		this.position -= length;
@@ -40,7 +39,7 @@ export class FileWindowBuffer {
 		this.fsOp.read();
 	}
 
-	public expandRight(length: number,  callback: (err: Error, bytesRead: number) => void) {
+	public expandRight(length: number, callback: (err: Error, bytesRead: number) => void) {
 		this.checkOp();
 		const offset = this.buffer.length;
 		this.buffer = Buffer.concat([this.buffer, Buffer.alloc(length)]);

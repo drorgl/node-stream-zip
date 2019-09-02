@@ -1,5 +1,9 @@
 Release notes
 -------------
+##### v1.8.1 (2019-09-03)
+`+` converted to typescript
+`+` add coverage and typedoc
+
 ##### v1.8.0 (2019-01-30)
 `+` fixed deprecations
 

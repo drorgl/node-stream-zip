@@ -6,3 +6,9 @@ resources/lib
 *.log
 /test/.tmp
 /dist
+.nyc_output/
+coverage/
+dist/
+docs/
+drorgl-node-stream-*
+node-stream-zip-*

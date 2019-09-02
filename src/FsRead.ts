@@ -1,5 +1,4 @@
 import fs from "fs";
-import { consts } from "./consts";
 import { StreamZip } from "./StreamZip";
 
 export class FsRead {

@@ -142,7 +142,7 @@ export class ZipEntry {
 	public readExtra(data: Buffer, offset: number) {
 		let signature;
 		let size;
-		const  maxPos = offset + this.extraLen;
+		const maxPos = offset + this.extraLen;
 		while (offset < maxPos) {
 			signature = data.readUInt16LE(offset);
 			offset += 2;

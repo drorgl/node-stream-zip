@@ -1,4 +1,3 @@
-import { consts } from "./consts";
 
 interface IState {
 	crc: number;

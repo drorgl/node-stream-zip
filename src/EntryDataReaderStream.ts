@@ -1,11 +1,10 @@
 import fs from "fs";
 import stream from "stream";
-import { consts } from "./consts";
 
 export class EntryDataReaderStream extends stream.Readable {
 	public fd: number;
 	public offset: number;
-	public length: number ;
+	public length: number;
 	public pos: number;
 	constructor(fd: number, offset: number, length: number) {
 		super();
@@ -21,7 +20,7 @@ export class EntryDataReaderStream extends stream.Readable {
 			fs.read(this.fd, buffer, 0, buffer.length, this.offset + this.pos,
 				(err, bytesRead, bufferForCallback) => {
 					this.readCallback(err, bytesRead, bufferForCallback);
-				} );
+				});
 		} else {
 			this.push(null);
 		}

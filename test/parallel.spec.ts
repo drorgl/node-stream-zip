@@ -1,12 +1,10 @@
 import { expect } from "chai";
 import fs from "fs";
 import "mocha";
+import { StreamZip } from "../src/index";
 import { makeid, rmdirRecursive } from "./util";
 
-import { StreamZip } from "../src/StreamZip";
-
 const basePathTmp = "test/.tmp/";
-const contentPath = "test/content/";
 
 describe("parallel", () => {
 	let testPathTmp: string = null;

@@ -1,5 +1,5 @@
 console.log("Loading zip...");
-import { StreamZip } from "../src/StreamZip";
+import { StreamZip } from "../src/index";
 const zip = new StreamZip({
 	file: "./test/ok/normal.zip"
 });

@@ -1,5 +1,4 @@
 import stream from "stream";
-import { consts } from "./consts";
 import { CrcVerify } from "./CrcVerify";
 
 export class EntryVerifyStream extends stream.Transform {

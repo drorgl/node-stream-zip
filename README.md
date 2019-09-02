@@ -1,4 +1,6 @@
-# node-stream-zip [![Build status](https://travis-ci.org/antelle/node-stream-zip.svg?branch=master)](https://travis-ci.org/antelle/node-stream-zip)
+# @drorgl/node-stream-zip 
+
+### NOTE: this is a typescriptified version of [node-stream-zip](https://github.com/antelle/node-stream-zip) forked from 1.8.0
 
 node.js library for reading and extraction of ZIP archives.  
 Features:
@@ -14,13 +16,13 @@ Features:
 
 # Installation
 
-`$ npm install node-stream-zip`
+`$ npm install @drorgl/node-stream-zip`
 
 # Usage
 
 Open a zip file
-```javascript
-const StreamZip = require('node-stream-zip');
+```typescript
+import { StreamZip } from "@drorgl/node-stream-zip";
 const zip = new StreamZip({
     file: 'archive.zip',
     storeEntries: true
@@ -31,7 +33,7 @@ zip.on('error', err => { /*...*/ });
 ```
 
 List entries
-```javascript
+```typescript
 zip.on('ready', () => {
     console.log('Entries read: ' + zip.entriesCount);
     for (const entry of Object.values(zip.entries())) {
@@ -44,7 +46,7 @@ zip.on('ready', () => {
 ```
 
 Stream one entry to stdout
-```javascript
+```typescript
 zip.on('ready', () => {
     zip.stream('path/inside/zip.txt', (err, stm) => {
         stm.pipe(process.stdout);
@@ -54,7 +56,7 @@ zip.on('ready', () => {
 ```
 
 Extract one file to disk
-```javascript
+```typescript
 zip.on('ready', () => {
     zip.extract('path/inside/zip.txt', './extracted.txt', err => {
         console.log(err ? 'Extract error' : 'Extracted');
@@ -64,7 +66,7 @@ zip.on('ready', () => {
 ```
 
 Extract a folder from archive to disk
-```javascript
+```typescript
 zip.on('ready', () => {
     fs.mkdirSync('extracted');
     zip.extract('path/inside/zip/', './extracted', err => {
@@ -75,7 +77,7 @@ zip.on('ready', () => {
 ```
 
 Extract everything
-```javascript
+```typescript
 zip.on('ready', () => {
     fs.mkdirSync('extracted');
     zip.extract(null, './extracted', (err, count) => {
@@ -86,7 +88,7 @@ zip.on('ready', () => {
 ```
 
 Read a file as buffer in sync way
-```javascript
+```typescript
 zip.on('ready', () => {
     const data = zip.entryDataSync('path/inside/zip.txt');
     zip.close();
@@ -94,14 +96,14 @@ zip.on('ready', () => {
 ```
 
 When extracting a folder, you can listen to `extract` event
-```javascript
+```typescript
 zip.on('extract', (entry, file) => {
     console.log(`Extracted ${entry.name} to ${file}`);
 });
 ```
 
 `entry` event is generated for every entry during loading
-```javascript
+```typescript
 zip.on('entry', entry => {
     // you can already stream this entry,
     // without waiting until all entry descriptions are read (suitable for very large archives)
@@ -127,6 +129,17 @@ You can pass these options to the constructor
 
 The project doesn't require building. To run unit tests with [nodeunit](https://github.com/caolan/nodeunit):  
 `$ npm test`
+
+# Coverage
+Using nyc we get the following results:
+```
+=============================== Coverage summary ===============================
+Statements   : 87.22% ( 471/540 )
+Branches     : 73.46% ( 191/260 )
+Functions    : 94.05% ( 79/84 )
+Lines        : 87.67% ( 462/527 )
+================================================================================
+```
 
 # Known issues
 

@@ -26,7 +26,6 @@
     "doc": "rimraf ./docs && typedoc",
     "doc-markdown": "rimraf ./docs && typedoc --theme markdown",
     "prepublish": "npm run lint && npm run dryrun && npm run test && npm run build",
-    "install": "npm run build",
     "publish-now": "npm publish --access public"
   },
   "repository": {

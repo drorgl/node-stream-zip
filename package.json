@@ -1,6 +1,6 @@
 {
   "name": "@drorgl/node-stream-zip",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "description": "node.js library for reading and extraction of ZIP archives",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -31,7 +31,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/antelle/node-stream-zip.git"
+    "url": "https://github.com/drorgl/node-stream-zip.git"
   },
   "contributors": [
     {
